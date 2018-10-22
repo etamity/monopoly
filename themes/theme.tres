@@ -1,0 +1,21 @@
+[gd_resource type="Theme" load_steps=3 format=2]
+
+[ext_resource path="res://assets/fonts/Roboto-Regular.ttf" type="DynamicFontData" id=1]
+
+[sub_resource type="DynamicFont" id=1]
+
+size = 25
+outline_size = 2
+outline_color = Color( 0.101961, 0.156863, 0.188235, 1 )
+use_mipmaps = false
+use_filter = false
+extra_spacing_top = 10
+extra_spacing_bottom = 10
+font_data = ExtResource( 1 )
+_sections_unfolded = [ "Extra Spacing", "Font", "Settings" ]
+
+[resource]
+
+default_font = SubResource( 1 )
+_sections_unfolded = [ "Label", "default_font" ]
+
