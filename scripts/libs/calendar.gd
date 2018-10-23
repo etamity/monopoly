@@ -1,15 +1,7 @@
-extends Node
+var _date = OS.get_date();
 
-var date = OS.get_date();
+const DAYS_OF_MONTHS = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
 
-var _total_days = 1 setget set_total_days, get_total_days;
-
-func set_total_days(value):
-    _total_days = value;
-
-func get_total_days():
-    return _total_days;
-    
 func get_day():
 	return get_date()['day'];
 	
@@ -22,16 +14,27 @@ func get_year():
 func _leapYear(year):
     return ((year % 4 == 0) && (year % 100 != 0)) || (year % 400 == 0);
 
-func get_date():
-    var newDate = date.duplicate();
-    var isLeapYear = _leapYear(newDate['year']);
-    if (isLeapYear == true && newDate['month'] == 2 && newDate['day'] == 29):
-        newDate['day'] = _total_days;
-        newDate['month'] = 3;
-    else: 
-        newDate['day'] = newDate['day'] + _total_days;
-    var timestamp = OS.get_unix_time_from_datetime(newDate);
-    return OS.get_datetime_from_unix_time(timestamp);
+func _isvalid_day(day, month, year):
+	var max_day = DAYS_OF_MONTHS[month];
+	var isLeapYear = _leapYear(year);
+	if (isLeapYear == true && month == 2):
+		max_day += 1
+	return day <= max_day; 
+
+func get_date(days = 0):
+	var newDate = _date.duplicate();
+	var isLeapYear = _leapYear(newDate['year']);
+	if _isvalid_day(newDate['day'], newDate['month'], newDate['year']):
+		newDate['day'] = newDate['day'] + days;
+	else: 
+		newDate['day'] = days;
+		newDate['month'] += newDate['month'];
+	var timestamp = OS.get_unix_time_from_datetime(newDate);
+	return OS.get_datetime_from_unix_time(timestamp);
+
+func get_date_string(days = 0):
+	var date = self.get_date(days);
+	return '{day}/{month}/{year}'.format(date);
 
 func _ready():
     pass

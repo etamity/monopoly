@@ -1,9 +1,11 @@
-extends Node
+var action_types = preload('res://scripts/game/action_types.gd');
 
 func game_reset_state():
-	var boots = get_node('/root/boots');
-	var action_types = boots.get_action_types();
-
 	return {
 		'type': action_types.GAME_REST_STATE
+	}
+
+func game_end_round():
+	return {
+		'type': action_types.GAME_END_ROUND
 	}

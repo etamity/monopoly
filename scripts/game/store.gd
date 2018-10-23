@@ -1,26 +1,23 @@
-extends Node
-
 var _state = {}
 var _reducers = {}
 
 signal state_changed(name, state)
 
 func create(reducers, callbacks = null):
-	for reducer in reducers:
-		var name = reducer['name']
+	for key in reducers:
+		var name = key
 		if not _state.has(name):
 			_state[name] = {}
 		if not _reducers.has(name):
-			_reducers[name] = funcref(reducer['instance'], name)
-			var initial_state = _reducers[name].call_func(
-				_state[name],
-				{'type': null}
-			)
+			var reducer = reducers[name];
+			reducer.store = self;
+			_reducers[name] = funcref(reducer, name)
+			var initial_state = _reducers[name].call_func()
 			_state[name] = initial_state
 
 	if callbacks != null:
-		for callback in callbacks:
-			subscribe(callback['instance'], callback['name'])
+		for key in callbacks:
+			subscribe(callbacks[key], key)
 
 func subscribe(target, method):
 	connect('state_changed', target, method)
