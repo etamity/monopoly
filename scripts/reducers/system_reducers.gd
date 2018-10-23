@@ -2,7 +2,7 @@ var action_types = preload('res://scripts/game/action_types.gd');
 var store = null;
 var calendar = preload('res://scripts/libs/calendar.gd').new();
 var _state = {
-	'days': 1,
+	'days': 450,
 	'date': calendar.get_date_string()
 }
 func system(state = _state, action = {'type': null}):
