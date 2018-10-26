@@ -1,5 +1,3 @@
-extends Node
-# LEVELING SYSTEM
 export (int) var level = 1
 
 var experience = 0

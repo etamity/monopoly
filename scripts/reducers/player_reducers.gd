@@ -1,7 +1,7 @@
 var action_types = preload('res://scripts/game/action_types.gd');
 var store = null;
 var _state = {
-	'time': 16,
+	'time_caps': 16,
 	'level': 1,
 	'money': 1000,
 	'reputaion': 0,
@@ -13,7 +13,7 @@ func player(state = _state, action = {'type': null}):
 			return _state;
 		action_types.GAME_END_ROUND:
 			var new_state = store.copy(state);
-			new_state.time = 16;
+			new_state.time_caps = 16;
 			new_state.health -= 1
 			return new_state
 	return state

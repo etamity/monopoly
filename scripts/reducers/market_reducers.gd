@@ -7,6 +7,4 @@ func market(state = _state, action = {'type': null}):
 	match action.type:
 		action_types.GAME_END_ROUND:
 			return state
-	return state
-
-	
+	return state;

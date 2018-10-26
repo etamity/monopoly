@@ -1,13 +1,25 @@
-extends Node
+func random(rang):
+	return randi() % rang;
 
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
+func random_array(arr):
+	return arr[self.random(arr.size())]
 
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
+func random_dict(dict):
+	return dict[self.random_array(dict.keys().size())]
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
+func price(min_v = null, max_v = null, dec = null, symbol = null, factor = null):
+	if min_v == null:
+		min_v = 1
+	if max_v == null:
+		max_v = 1000
+	if dec == null:
+		dec = 2
+	if symbol == null:
+		symbol = ''
+
+	var randValue = rand_range(min_v, max_v);
+	var format_string = '{symbol}{price}';
+	var price = (round(randValue * pow(10, dec)) / pow(10, dec));
+	if (min_v < 0 || max_v < 0):
+		price = 0.00
+	return format_string.format({ 'symbol': symbol, 'price': price })
