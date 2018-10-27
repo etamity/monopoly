@@ -7,7 +7,7 @@ var actions = preload('res://scripts/game/actions.gd').new();
 var store = preload('res://scripts/game/store.gd').new();
 var action_types = preload('res://scripts/game/action_types.gd');
 
-var Math = preload('res://scripts/libs/math.gd').new();
+var Math = preload('res://scripts/libs/math.gd');
 
 
 # Called when the node enters the scene tree for the first time.

@@ -1,13 +1,13 @@
-func random(rang):
+static func random(rang):
 	return randi() % rang;
 
-func random_array(arr):
-	return arr[self.random(arr.size())]
+static func random_array(arr):
+	return arr[random(arr.size())]
 
-func random_dict(dict):
-	return dict[self.random_array(dict.keys().size())]
+static func random_dict(dict):
+	return dict[random_array(dict.keys().size())]
 
-func price(min_v = null, max_v = null, dec = null, symbol = null, factor = null):
+static func price(min_v = null, max_v = null, dec = null, symbol = null, factor = null):
 	if min_v == null:
 		min_v = 1
 	if max_v == null:

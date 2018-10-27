@@ -4,7 +4,8 @@ onready var global = get_node('/root/global');
 onready var store = global.store;
 onready var actions = global.actions;
 
-var product_faker = load('res://scripts/libs/faker/product.gd').new()
+onready var product_faker = preload('res://scripts/libs/faker/product.gd').new()
+onready var company_faker = preload('res://scripts/libs/faker/company.gd').new()
 
 func end_round():
 	#next day
@@ -24,5 +25,5 @@ func _on_store_changed(name, state):
 	print(name, state)
 
 func _on_Button2_pressed():
-	print(product_faker.price());
+	print(company_faker.name());
 	pass # Replace with function body.

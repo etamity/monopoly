@@ -1,8 +1,8 @@
 extends Node
 
-onready var global = get_node('/root/global');
-onready var Math = global.Math;
-const adjective = [
+var Math = preload('res://scripts/libs/math.gd');
+
+const _adjective = [
     "Adaptive",
     "Advanced",
     "Ameliorated",
@@ -105,7 +105,7 @@ const adjective = [
     "Vision-oriented"
   ];
 
-  const bs_adjective = [
+const _bs_adjective = [
     "clicks-and-mortar",
     "value-added",
     "vertical",
@@ -173,7 +173,7 @@ const adjective = [
     "rich"
   ];
 
-  const bs_noun = [
+const _bs_noun = [
     "synergies",
     "web-readiness",
     "paradigms",
@@ -221,7 +221,7 @@ const adjective = [
     "blockchains"
   ];
 
-  const bs_verb = [
+const _bs_verb = [
     "implement",
     "utilize",
     "integrate",
@@ -284,7 +284,7 @@ const adjective = [
     "recontextualize"
   ];
 
-  const descriptor = [
+const _descriptor = [
     "24 hour",
     "24/7",
     "3rd generation",
@@ -388,7 +388,7 @@ const adjective = [
     "zero tolerance"
   ];
 
-  const noun =  [
+const _noun =  [
     "ability",
     "access",
     "adapter",
@@ -495,12 +495,34 @@ const adjective = [
     "workforce"
   ];
 
-  const suffix =[
+const _suffix =[
   "Inc",
   "and Sons",
   "LLC",
   "Group"
 ];
 
+func adjective():
+    return Math.random_array(_adjective);
+
+func bs_adjective():
+    return Math.random_array(_bs_adjective);
+
+func bs_verb():
+    return Math.random_array(_bs_verb);
+
+func bs_noun():
+    return Math.random_array(_bs_noun);
+
+func descriptor():
+    return Math.random_array(_descriptor);
+
+func noun():
+    return Math.random_array(_noun);
+
 func suffixes():
-    return 
+    return Math.random_array(_suffix);
+
+func name():
+	var format_string = '{adjective} {noun}'
+	return format_string.format({'adjective': self.adjective(), 'descriptor': self.descriptor(), 'noun': self.noun()})

@@ -1,9 +1,8 @@
 extends Node
 
-onready var global = get_node('/root/global');
-onready var Math = global.Math;
+var Math = preload('res://scripts/libs/math.gd');
 
-const color = [
+const _color = [
 	  "red",
 	  "green",
 	  "blue",
@@ -37,7 +36,7 @@ const color = [
 	  "silver"
 ];
 
-const department = [
+const _department = [
     "Books",
     "Movies",
     "Music",
@@ -62,7 +61,7 @@ const department = [
     "Industrial"
 ];
 
-const adjective = [
+const _adjective = [
     "Small",
     "Ergonomic",
     "Rustic",
@@ -82,7 +81,7 @@ const adjective = [
     "Tasty"
 ];
 
-const material = [
+const _material = [
     "Steel",
     "Wooden",
     "Concrete",
@@ -96,7 +95,7 @@ const material = [
     "Frozen"
 ];
 
-const product = [
+const _product = [
     "Chair",
     "Car",
     "Computer",
@@ -123,25 +122,26 @@ const product = [
     "Chips"
 ];
 
+
 func color():
   randomize()
-  return Math.random_array(color);
+  return Math.random_array(_color);
 
 func department():
   randomize()
-  return Math.random_array(department);
+  return Math.random_array(_department);
 
 func adjective():
   randomize()
-  return Math.random_array(adjective);
+  return Math.random_array(_adjective);
 
 func material():
   randomize()
-  return Math.random_array(material);
+  return Math.random_array(_material);
   
 func product():
   randomize()
-  return Math.random_array(product);
+  return Math.random_array(_product);
     
 func product_name():
   return self.adjective() + " " + self.material() + " " + self.product();
